@@ -4,7 +4,7 @@
     @media (max-width: 600px) {
         .todo-conteiner {
             width: 100%;
-            padding: 0 15px;
+            padding: 0 20px;
         }
     }
     .input-field {
@@ -13,6 +13,10 @@
         margin-top: 20px;}
         .file-path-wrapper {
             width: 80%;}
+            @media (max-width: 600px) {
+                .file-path-wrapper {
+                    width: 75%;}
+            }
             .file-path {
                 height: 2rem;
                 padding: 4px;}                   

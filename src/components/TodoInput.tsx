@@ -16,6 +16,14 @@ export const TodoInput: React.FC<{addTodo(text: string): void}> = (props) => {
         }
       }
 
+    const btnAdd = () => {
+      if (text) {
+        props.addTodo(text)
+        setText('')
+      }
+    }   
+
+
       return <div className="input-field">
       <div className="file-path-wrapper">
         <input 
@@ -27,7 +35,7 @@ export const TodoInput: React.FC<{addTodo(text: string): void}> = (props) => {
           placeholder="text"/>
       </div>
 
-      <div className="btn">
+      <div className="btn" onClick={btnAdd}>
         <span>add</span>
       </div>
     </div>
