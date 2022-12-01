@@ -1,26 +1,46 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
+import {TodoInput} from './components/TodoInput'
+import {TodoList} from './components/TodoList'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface todo {
+  text: string
+  id: number
+  completed: boolean
+}
+
+const App: React.FC = () => {
+  const [todos, setTodos] = useState<todo[]>([])
+
+  const addTodo = (text: string) => {
+    const newTodo: todo = {
+      text: text,
+      id: Date.now(),
+      completed: false,
+    }
+
+    setTodos(prev => [newTodo, ...prev])
+  }
+
+  const chengeCheckbox = (id: number) => {
+    setTodos(todos.map(el => {
+      if (el.id === id) {
+        el.completed = !el.completed
+      }
+
+      return el
+    }))
+  }
+
+  const deleteTodo = (id: number) => {
+    setTodos(todos.filter(el => el.id !== id))
+  }
+
+  return  <div className="todo-conteiner">
+    <TodoInput addTodo={addTodo}/>
+    <TodoList todos={todos} toggle={chengeCheckbox} delete={deleteTodo}/>
+  </div>
 }
 
 export default App;
